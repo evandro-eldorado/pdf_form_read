@@ -1,0 +1,6 @@
+# SPDX-FileCopyrightText: 2026 Evandro Chagas Ribeiro da Rosa <evandro.rosa.BE@eldorado.org.br>
+#
+# SPDX-License-Identifier: MIT
+venv
+**/*.egg-info
+**/*.pyc
