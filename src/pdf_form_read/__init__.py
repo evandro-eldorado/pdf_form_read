@@ -102,10 +102,20 @@ def dict_to_table(dados: dict) -> pd.DataFrame:
 
 def verificar_pdf(upload_widget):
     try:
-        file = upload_widget.value[0]
-        file = file["content"]
-        file = BytesIO(file)
+        value = upload_widget.value
+
+        # ipywidgets 7 → dict
+        if isinstance(value, dict):
+            file_info = next(iter(value.values()))
+        # ipywidgets 8 → tuple
+        else:
+            file_info = value[0]
+
+        file_bytes = file_info["content"]
+        file = BytesIO(file_bytes)
+
         return dict_to_table(process_row_field(read_row_fields(file)))
+
     except Exception as e:
         print(
             "Não foi possível processar o arquivo PDF.\n"
